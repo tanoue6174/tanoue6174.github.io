@@ -235,6 +235,131 @@
       text-align: center;
     }
 
+
+    .flow-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 8px 22px rgba(23, 33, 43, 0.06);
+    }
+
+    .flow-stage {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .flow-stage:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -18px;
+      top: 58%;
+      color: var(--blue);
+      font-size: 34px;
+      font-weight: 800;
+    }
+
+    .flow-heading {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .flow-number {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #ffffff;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .flow-stage h3 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .flow-stage p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .phone-mock {
+      border: 8px solid #111820;
+      border-radius: 28px;
+      background: #f7fafc;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(23, 33, 43, 0.18);
+    }
+
+    .phone-top {
+      padding: 12px 14px;
+      color: #ffffff;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .phone-body {
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .mini-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 9px 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #ffffff;
+    }
+
+    .mini-row strong {
+      font-weight: 800;
+    }
+
+    .mini-note {
+      padding: 10px;
+      border-radius: 6px;
+      background: #eef6ff;
+      color: #1f4f99;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .mini-button {
+      padding: 11px;
+      border-radius: 6px;
+      background: var(--green);
+      color: #ffffff;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .status-ok {
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .status-mid {
+      color: #c77d12;
+      font-weight: 800;
+    }
+
     @media (max-width: 820px) {
       header {
         min-height: 56vh;
@@ -242,12 +367,14 @@
 
       .grid,
       .flow,
+      .flow-board,
       .effect {
         grid-template-columns: 1fr;
       }
 
       .intro,
       .card,
+      .flow-board,
       .effect-box {
         padding: 20px;
       }
@@ -331,23 +458,73 @@
 
     <section>
       <h2>使い方の流れ</h2>
-      <div class="flow">
-        <div class="step">
-          <strong>生徒が行きたい場所を選ぶ</strong>
+      <p>
+        アプリは、生徒が希望を送り、先生が部屋と時間を登録し、生徒がリストで確認し、先生が人数を見て計画する流れで使います。
+      </p>
+      <div class="flow-board">
+        <article class="flow-stage">
+          <div class="flow-heading">
+            <span class="flow-number green">1</span>
+            <h3>生徒が行きたい場所を選ぶ</h3>
+          </div>
           <p>使いたい部屋と時間を選んで、先生に希望を送ります。</p>
-        </div>
-        <div class="step">
-          <strong>先生が部屋と時間を登録</strong>
-          <p>生徒の希望を見ながら、自習に使える教室や時間帯をアプリに登録します。</p>
-        </div>
-        <div class="step">
-          <strong>生徒がリストで確認</strong>
+          <div class="phone-mock">
+            <div class="phone-top green">希望を送る</div>
+            <div class="phone-body">
+              <div class="mini-row"><strong>自習室A</strong><span>選択中</span></div>
+              <div class="mini-row"><strong>17:00〜18:00</strong><span>選択中</span></div>
+              <div class="mini-button">先生に希望を送る</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="flow-stage">
+          <div class="flow-heading">
+            <span class="flow-number blue">2</span>
+            <h3>先生が部屋と時間を登録</h3>
+          </div>
+          <p>生徒の希望を見ながら、自習に使える教室や時間帯を登録します。</p>
+          <div class="phone-mock">
+            <div class="phone-top blue">部屋・時間の登録</div>
+            <div class="phone-body">
+              <div class="mini-row"><strong>自習室A</strong><span>18人希望</span></div>
+              <div class="mini-row"><strong>図書室</strong><span>12人希望</span></div>
+              <div class="mini-note">使える場所として登録</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="flow-stage">
+          <div class="flow-heading">
+            <span class="flow-number yellow">3</span>
+            <h3>生徒がリストで確認</h3>
+          </div>
           <p>空いている部屋や、友達が勉強している場所を確認します。</p>
-        </div>
-        <div class="step">
-          <strong>先生が人数を見て計画</strong>
+          <div class="phone-mock">
+            <div class="phone-top yellow">利用できる場所</div>
+            <div class="phone-body">
+              <div class="mini-row"><strong>自習室A</strong><span class="status-ok">空きあり</span></div>
+              <div class="mini-row"><strong>自習室B</strong><span class="status-mid">やや混雑</span></div>
+              <div class="mini-row"><strong>多目的室</strong><span class="status-ok">空きあり</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="flow-stage">
+          <div class="flow-heading">
+            <span class="flow-number red">4</span>
+            <h3>先生が人数を見て計画</h3>
+          </div>
           <p>希望人数を見ながら、どの部屋を開けるか決めやすくなります。</p>
-        </div>
+          <div class="phone-mock">
+            <div class="phone-top red">人数を見て計画</div>
+            <div class="phone-body">
+              <div class="mini-row"><strong>自習室A</strong><span>18人 ○</span></div>
+              <div class="mini-row"><strong>図書室</strong><span>12人 ○</span></div>
+              <div class="mini-row"><strong>多目的室</strong><span>5人 ×</span></div>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
